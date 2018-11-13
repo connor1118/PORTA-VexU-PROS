@@ -15,7 +15,7 @@ void driveOP()
   rightDrive.move(controller.get_analog(ANALOG_RIGHT_Y));
   rightDrive1.move(controller.get_analog(ANALOG_RIGHT_Y));
 }
-
+//drive
 void drive(int distance)
 {
   leftDrive.move_relative(distance, maxBaseVelocity);
@@ -23,7 +23,7 @@ void drive(int distance)
   rightDrive.move_relative(distance, maxBaseVelocity);
   rightDrive1.move_relative(distance, maxBaseVelocity);
 
-  while (!((leftDrive.get_position() < distance+3) && (leftDrive.get_position() > distance-3)))
+  while(!((leftDrive.get_position() < distance+3) && (leftDrive.get_position() > distance-3)))
   {
     delay(2);
   }
@@ -38,4 +38,9 @@ void turn(int degrees)
   leftDrive1.move_relative(target, maxBaseVelocity);
   rightDrive.move_relative(target, -maxBaseVelocity);
   rightDrive1.move_relative(target, -maxBaseVelocity);
+
+  while(!((leftDrive.get_position() < target+3) && (leftDrive.get_position() > tarhet-3)))
+  {
+    delay(2);
+  }
 }
