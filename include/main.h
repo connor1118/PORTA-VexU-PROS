@@ -37,6 +37,9 @@
 #include "api.h"
 
 #include "base.hpp"
+#include "intake.hpp"
+#include "shooter.hpp"
+
 
 /**
  * You should add more #includes here

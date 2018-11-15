@@ -11,4 +11,18 @@
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {}
+void mid(bool red)
+{
+  if(red)
+  {
+    shoot();
+    drive(1000);
+    drive(-1000);
+    turn(90);
+  }
+}
+
+
+void autonomous() {
+
+}

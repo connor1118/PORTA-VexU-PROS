@@ -24,5 +24,5 @@ void shooterOP()
 void shoot()
 {
   shooterMotors(127);
-  delay(.75);
+  delay(850);
 }
