@@ -33,7 +33,6 @@ void resetDrive()
 //drive
 void drive(int inches)
 {
-    resetDrive();
     int distance = inches*(360/14.125);
     leftDrive.move_relative(distance, medBaseVelocity);
     leftDrive1.move_relative(distance, medBaseVelocity);
