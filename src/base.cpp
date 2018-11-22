@@ -1,13 +1,17 @@
 #include "main.h"
 
 static int maxBaseVelocity = 200;
+static int medBaseVelocity = 100;
+static int slowBaseVelocity = 50;
 
 //DEFINING MOTORS
-Motor leftDrive(1, MOTOR_GEARSET_18, 0, MOTOR_ENCODER_DEGREES);
+Motor leftDrive(1, MOTOR_GEARSET_18, 0,  MOTOR_ENCODER_DEGREES);
 Motor leftDrive1(2, MOTOR_GEARSET_18, 0, MOTOR_ENCODER_DEGREES);
 
 Motor rightDrive(3, MOTOR_GEARSET_18, 1, MOTOR_ENCODER_DEGREES);
 Motor rightDrive1(4, MOTOR_GEARSET_18, 1, MOTOR_ENCODER_DEGREES);
+
+
 
 void driveOP()
 {
@@ -27,34 +31,33 @@ void resetDrive()
 
 
 //drive
-void drive(int distance)
+void drive(int inches)
 {
-
-    leftDrive.move_relative(distance, maxBaseVelocity);
-    leftDrive1.move_relative(distance, maxBaseVelocity);
-    rightDrive.move_relative(distance, maxBaseVelocity);
-    rightDrive1.move_relative(distance, maxBaseVelocity);
-
-    while(!((leftDrive.get_position() < distance+3) && (leftDrive.get_position() > distance-3)))
+    resetDrive();
+    int distance = inches*(360/14.125);
+    leftDrive.move_relative(distance, medBaseVelocity);
+    leftDrive1.move_relative(distance, medBaseVelocity);
+    rightDrive.move_relative(distance, medBaseVelocity);
+    rightDrive1.move_relative(distance, medBaseVelocity);
+    int dist = distance;
+    while(!((leftDrive.get_position() < dist+3) && (leftDrive.get_position() > dist-3)))
     {
       delay(2);
     }
   }
-}
+
 
 void turn(int degrees)
 {
-    double degreesToEncoder = 3.6;
-    int target = degrees*degreesToEncoder;
+    //resetDrive();
+    int target = degrees*2.5;
 
-    leftDrive.move_relative(target, maxBaseVelocity);
-    leftDrive1.move_relative(target, maxBaseVelocity);
-    rightDrive.move_relative(-target, -maxBaseVelocity);
-    rightDrive1.move_relative(-target, -maxBaseVelocity);
-
-    while(!((leftDrive.get_position() < distance+3) && (leftDrive.get_position() > distance-3)))
+    leftDrive.move_relative(target, slowBaseVelocity);
+    leftDrive1.move_relative(target, slowBaseVelocity);
+    rightDrive.move_relative(-target, slowBaseVelocity);
+    rightDrive1.move_relative(-target, slowBaseVelocity);
+    while(!((leftDrive.get_position() < target+3) && (leftDrive.get_position() > target-3)))
     {
       delay(2);
     }
   }
-}

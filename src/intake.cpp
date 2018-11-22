@@ -1,25 +1,25 @@
 #include "main.h"
 
-Motor rollers(7, MOTOR_GEARSET_36, 0, MOTOR_ENCODER_DEGREES);
+Motor rollers(6, MOTOR_GEARSET_18, 1, MOTOR_ENCODER_DEGREES);
 
 void rollerMotor(int power)
 {
-  rollers.move(power)
+  rollers.move_velocity(power);
 }
 
 void intakeOP()
 {
   if(controller.get_digital(DIGITAL_R1))
   {
-    rollerMotor(127);
+    rollerMotor(200);
   }
   else if(controller.get_digital(DIGITAL_R2))
   {
-    rollerMotor(-127);
+    rollers.move_velocity(-200);
   }
   else
   {
-    rollerMotor(0);
+    rollers.move_velocity(0);
   }
 }
 

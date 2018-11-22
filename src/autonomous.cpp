@@ -11,7 +11,8 @@
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void mid(bool red)
+ bool red = true;
+void mid()
 {
   if(red)
   {
@@ -19,10 +20,13 @@ void mid(bool red)
     drive(1000);
     drive(-1000);
     turn(90);
+  
   }
 }
 
 
 void autonomous() {
+
+mid();
 
 }

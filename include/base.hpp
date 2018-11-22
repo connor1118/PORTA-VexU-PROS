@@ -3,7 +3,7 @@
 
 void driveOP();
 
-void drive(int distance);
+void drive(int inches);
 void turn(int degrees);
 
 
