@@ -12,6 +12,7 @@ static int slowBaseVelocity = 50;
 
 void intakeDrive(int inches)
 {
+  resetDrive();
   int distance = inches*(360/14.125);
   leftDrive.move_relative(distance, slowBaseVelocity);
   leftDrive1.move_relative(distance, slowBaseVelocity);
