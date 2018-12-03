@@ -1,6 +1,6 @@
 #include "main.h"
 
-Motor leftDrive(1, MOTOR_GEARSET_18, 0,  MOTOR_ENCODER_DEGREES);
+/*Motor leftDrive(1, MOTOR_GEARSET_18, 0,  MOTOR_ENCODER_DEGREES);
 Motor leftDrive1(2, MOTOR_GEARSET_18, 0, MOTOR_ENCODER_DEGREES);
 
 Motor rightDrive(3, MOTOR_GEARSET_18, 1, MOTOR_ENCODER_DEGREES);
@@ -26,3 +26,4 @@ void intakeDrive(int inches)
     delay(2);
   }
 }
+*/
