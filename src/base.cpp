@@ -33,6 +33,7 @@ void resetDrive()
 //drive
 void drive(int inches)
 {
+  resetDrive();
     int distance = inches*(360/14.125);
     leftDrive.move_relative(distance, medBaseVelocity);
     leftDrive1.move_relative(distance, medBaseVelocity);
@@ -48,7 +49,7 @@ void drive(int inches)
 
 void turn(int degrees)
 {
-    //resetDrive();
+  resetDrive();
     int target = degrees*2.5;
 
     leftDrive.move_relative(target, slowBaseVelocity);
