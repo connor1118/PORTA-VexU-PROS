@@ -13,8 +13,8 @@ void shooterOP()
 {
   if(controller.get_digital(DIGITAL_L1))
   {
-    shooter.move_velocity(100);
-    shooter1.move_velocity(100);
+    shooter.move_velocity(200);
+    shooter1.move_velocity(200);
   }
   else
   {
@@ -26,7 +26,7 @@ void shooterOP()
 void shoot()
 {
   shooter.move_voltage(10000);
-  shooter1.move_voltage(1000);
-  delay(850);
+  shooter1.move_voltage(10000);
+  delay(600);
   shooter.move_voltage(0);
 }

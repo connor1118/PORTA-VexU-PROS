@@ -17,10 +17,13 @@ void mid()
   if(red)
   {
     shoot();
-    drive(1000);
-    drive(-1000);
+    drive(48);
+    //intake(2000);
+    drive(-78);
     turn(90);
-  
+    drive(10);
+    driveHard(60);
+
   }
 }
 

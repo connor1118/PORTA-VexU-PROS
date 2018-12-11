@@ -46,6 +46,20 @@ void drive(int inches)
     }
   }
 
+void driveHard(int inches)
+{
+  resetDrive();
+    int distance = inches*(360/14.125);
+    leftDrive.move_relative(distance, maxBaseVelocity);
+    leftDrive1.move_relative(distance, maxBaseVelocity);
+    rightDrive.move_relative(distance, maxBaseVelocity);
+    rightDrive1.move_relative(distance, maxBaseVelocity);
+    int dist = distance;
+    while(!((leftDrive.get_position() < dist+3) && (leftDrive.get_position() > dist-3)))
+    {
+      delay(2);
+    }
+  }
 
 void turn(int degrees)
 {

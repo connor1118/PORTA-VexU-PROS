@@ -4,7 +4,9 @@
 void driveOP();
 
 void drive(int inches);
+void driveHard(int inches);
 void turn(int degrees);
+
 
 
 void resetDrive();
