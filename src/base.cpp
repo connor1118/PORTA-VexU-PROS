@@ -3,6 +3,7 @@
 static int maxBaseVelocity = 200;
 static int medBaseVelocity = 100;
 static int slowBaseVelocity = 50;
+static int brakeBaseVelocity = -20;
 
 //DEFINING MOTORS
 Motor leftDrive(1, MOTOR_GEARSET_18, 0,  MOTOR_ENCODER_DEGREES);
@@ -29,49 +30,216 @@ void resetDrive()
   rightDrive1.tare_position();
 }
 
-
 //drive
 void drive(int inches)
 {
   resetDrive();
     int distance = inches*(360/14.125);
-    leftDrive.move_relative(distance, medBaseVelocity);
+    /*leftDrive.move_relative(distance, medBaseVelocity);
     leftDrive1.move_relative(distance, medBaseVelocity);
     rightDrive.move_relative(distance, medBaseVelocity);
-    rightDrive1.move_relative(distance, medBaseVelocity);
-    int dist = distance;
-    while(!((leftDrive.get_position() < dist+3) && (leftDrive.get_position() > dist-3)))
+    rightDrive1.move_relative(distance, medBaseVelocity);*/
+    if(distance > 0)
     {
-      delay(2);
+      leftDrive.move_velocity(medBaseVelocity);
+      leftDrive1.move_velocity(medBaseVelocity);
+      rightDrive.move_velocity(medBaseVelocity);
+      rightDrive1.move_velocity(medBaseVelocity);
+
+      while(leftDrive.get_position() < distance-400)
+      {
+        delay(2);
+      }
+      leftDrive.move_velocity(slowBaseVelocity);
+      leftDrive1.move_velocity(slowBaseVelocity);
+      rightDrive.move_velocity(slowBaseVelocity);
+      rightDrive1.move_velocity(slowBaseVelocity);
+
+
+      while(leftDrive.get_position() < distance)
+      {
+        delay(2);
+      }
+
+      leftDrive.move_velocity(brakeBaseVelocity);
+      leftDrive1.move_velocity(brakeBaseVelocity);
+      rightDrive.move_velocity(brakeBaseVelocity);
+      rightDrive1.move_velocity(brakeBaseVelocity);
+
+      delay(10);
+
+      leftDrive.move_velocity(0);
+      leftDrive1.move_velocity(0);
+      rightDrive.move_velocity(0);
+      rightDrive1.move_velocity(0);
     }
-  }
+
+    if(distance < 0)
+    {
+      leftDrive.move_velocity(-medBaseVelocity);
+      leftDrive1.move_velocity(-medBaseVelocity);
+      rightDrive.move_velocity(-medBaseVelocity);
+      rightDrive1.move_velocity(-medBaseVelocity);
+
+      while(leftDrive.get_position() > distance+400)
+      {
+        delay(2);
+      }
+      leftDrive.move_velocity(-slowBaseVelocity);
+      leftDrive1.move_velocity(-slowBaseVelocity);
+      rightDrive.move_velocity(-slowBaseVelocity);
+      rightDrive1.move_velocity(-slowBaseVelocity);
+
+
+      while(leftDrive.get_position() > distance)
+      {
+        delay(2);
+      }
+
+      leftDrive.move_velocity(-brakeBaseVelocity);
+      leftDrive1.move_velocity(-brakeBaseVelocity);
+      rightDrive.move_velocity(-brakeBaseVelocity);
+      rightDrive1.move_velocity(-brakeBaseVelocity);
+
+      delay(10);
+
+      leftDrive.move_velocity(0);
+      leftDrive1.move_velocity(0);
+      rightDrive.move_velocity(0);
+      rightDrive1.move_velocity(0);
+    }
+}
 
 void driveHard(int inches)
 {
   resetDrive();
-    int distance = inches*(360/14.125);
-    leftDrive.move_relative(distance, maxBaseVelocity);
-    leftDrive1.move_relative(distance, maxBaseVelocity);
-    rightDrive.move_relative(distance, maxBaseVelocity);
-    rightDrive1.move_relative(distance, maxBaseVelocity);
-    int dist = distance;
-    while(!((leftDrive.get_position() < dist+3) && (leftDrive.get_position() > dist-3)))
+  int distance = inches*(360/14.125);
+  if(distance > 0)
+  {
+    leftDrive.move_velocity(maxBaseVelocity);
+    leftDrive1.move_velocity(maxBaseVelocity);
+    rightDrive.move_velocity(maxBaseVelocity);
+    rightDrive1.move_velocity(maxBaseVelocity);
+
+    while(leftDrive.get_position() < distance)
     {
       delay(2);
     }
+
+    leftDrive.move_velocity(brakeBaseVelocity);
+    leftDrive1.move_velocity(brakeBaseVelocity);
+    rightDrive.move_velocity(brakeBaseVelocity);
+    rightDrive1.move_velocity(brakeBaseVelocity);
+
+    delay(10);
+
+    leftDrive.move_velocity(0);
+    leftDrive1.move_velocity(0);
+    rightDrive.move_velocity(0);
+    rightDrive1.move_velocity(0);
   }
+  if(distance < 0)
+  {
+    leftDrive.move_velocity(-maxBaseVelocity);
+    leftDrive1.move_velocity(-maxBaseVelocity);
+    rightDrive.move_velocity(-maxBaseVelocity);
+    rightDrive1.move_velocity(-maxBaseVelocity);
+
+    while(leftDrive.get_position() > distance)
+    {
+      delay(2);
+    }
+
+    leftDrive.move_velocity(-brakeBaseVelocity);
+    leftDrive1.move_velocity(-brakeBaseVelocity);
+    rightDrive.move_velocity(-brakeBaseVelocity);
+    rightDrive1.move_velocity(-brakeBaseVelocity);
+
+    delay(10);
+
+    leftDrive.move_velocity(0);
+    leftDrive1.move_velocity(0);
+    rightDrive.move_velocity(0);
+    rightDrive1.move_velocity(0);
+  }
+}
 
 void turn(int degrees)
 {
   resetDrive();
-    int target = degrees*2.5;
+  int target = degrees*2.5;
 
-    leftDrive.move_relative(target, slowBaseVelocity);
+  /*  leftDrive.move_relative(target, slowBaseVelocity);
     leftDrive1.move_relative(target, slowBaseVelocity);
     rightDrive.move_relative(-target, slowBaseVelocity);
-    rightDrive1.move_relative(-target, slowBaseVelocity);
-    while(!((leftDrive.get_position() < target+3) && (leftDrive.get_position() > target-3)))
+    rightDrive1.move_relative(-target, slowBaseVelocity);*/
+    if(target > 0)
     {
-      delay(2);
+      leftDrive.move_velocity(medBaseVelocity);
+      leftDrive1.move_velocity(medBaseVelocity);
+      rightDrive.move_velocity(-medBaseVelocity);
+      rightDrive1.move_velocity(-medBaseVelocity);
+
+      while(leftDrive.get_position() < target-300)
+      {
+        delay(2);
+      }
+      leftDrive.move_velocity(slowBaseVelocity);
+      leftDrive1.move_velocity(slowBaseVelocity);
+      rightDrive.move_velocity(-slowBaseVelocity);
+      rightDrive1.move_velocity(-slowBaseVelocity);
+
+
+      while(leftDrive.get_position() < target)
+      {
+        delay(2);
+      }
+
+      leftDrive.move_velocity(brakeBaseVelocity);
+      leftDrive1.move_velocity(brakeBaseVelocity);
+      rightDrive.move_velocity(-brakeBaseVelocity);
+      rightDrive1.move_velocity(-brakeBaseVelocity);
+
+      delay(10);
+
+      leftDrive.move_velocity(0);
+      leftDrive1.move_velocity(0);
+      rightDrive.move_velocity(0);
+      rightDrive1.move_velocity(0);
+    }
+
+    if(target < 0)
+    {
+      leftDrive.move_velocity(-medBaseVelocity);
+      leftDrive1.move_velocity(-medBaseVelocity);
+      rightDrive.move_velocity(medBaseVelocity);
+      rightDrive1.move_velocity(medBaseVelocity);
+
+      while(leftDrive.get_position() > target+300)
+      {
+        delay(2);
+      }
+      leftDrive.move_velocity(-slowBaseVelocity);
+      leftDrive1.move_velocity(-slowBaseVelocity);
+      rightDrive.move_velocity(slowBaseVelocity);
+      rightDrive1.move_velocity(slowBaseVelocity);
+
+
+      while(leftDrive.get_position() > target)
+      {
+        delay(2);
+      }
+
+      leftDrive.move_velocity(-brakeBaseVelocity);
+      leftDrive1.move_velocity(-brakeBaseVelocity);
+      rightDrive.move_velocity(brakeBaseVelocity);
+      rightDrive1.move_velocity(brakeBaseVelocity);
+
+      delay(10);
+
+      leftDrive.move_velocity(0);
+      leftDrive1.move_velocity(0);
+      rightDrive.move_velocity(0);
+      rightDrive1.move_velocity(0);
     }
   }
