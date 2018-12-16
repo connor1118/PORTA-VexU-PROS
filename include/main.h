@@ -39,6 +39,7 @@
 #include "base.hpp"
 #include "intake.hpp"
 #include "shooter.hpp"
+#include "multitasking.hpp"
 
 
 /**

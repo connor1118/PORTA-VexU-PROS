@@ -1,6 +1,7 @@
 #include "main.h"
 
 static int maxBaseVelocity = 200;
+static int highBaseVelocity = 150;
 static int medBaseVelocity = 100;
 static int slowBaseVelocity = 50;
 static int brakeBaseVelocity = -20;
@@ -41,10 +42,10 @@ void drive(int inches)
     rightDrive1.move_relative(distance, medBaseVelocity);*/
     if(distance > 0)
     {
-      leftDrive.move_velocity(medBaseVelocity);
-      leftDrive1.move_velocity(medBaseVelocity);
-      rightDrive.move_velocity(medBaseVelocity);
-      rightDrive1.move_velocity(medBaseVelocity);
+      leftDrive.move_velocity(highBaseVelocity);
+      leftDrive1.move_velocity(highBaseVelocity);
+      rightDrive.move_velocity(highBaseVelocity);
+      rightDrive1.move_velocity(highBaseVelocity);
 
       while(leftDrive.get_position() < distance-400)
       {
@@ -76,10 +77,10 @@ void drive(int inches)
 
     if(distance < 0)
     {
-      leftDrive.move_velocity(-medBaseVelocity);
-      leftDrive1.move_velocity(-medBaseVelocity);
-      rightDrive.move_velocity(-medBaseVelocity);
-      rightDrive1.move_velocity(-medBaseVelocity);
+      leftDrive.move_velocity(-highBaseVelocity);
+      leftDrive1.move_velocity(-highBaseVelocity);
+      rightDrive.move_velocity(-highBaseVelocity);
+      rightDrive1.move_velocity(-highBaseVelocity);
 
       while(leftDrive.get_position() > distance+400)
       {
@@ -167,7 +168,7 @@ void driveHard(int inches)
 void turn(int degrees)
 {
   resetDrive();
-  int target = degrees*2.5;
+  int target = degrees*2.4;
 
   /*  leftDrive.move_relative(target, slowBaseVelocity);
     leftDrive1.move_relative(target, slowBaseVelocity);

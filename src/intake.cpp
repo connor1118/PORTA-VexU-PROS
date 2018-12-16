@@ -28,3 +28,12 @@ void intake(int time)
   rollerMotor(127);
   delay(time);
 }
+
+void flip()
+{
+  rollerMotor(-127);
+}
+void stopFlip()
+{
+  rollerMotor(0);
+}

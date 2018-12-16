@@ -11,25 +11,44 @@
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
- bool red = true;
-void mid()
+
+void mid(bool red)
 {
   if(red)
   {
     shoot();
+    turn(-1);
     drive(48);
     //intake(2000);
-    drive(-78);
+  /*  drive(-28);
+    turn(90);
+    drive(12);
+    flip();
+    delay(1000);
+    driveHard(6);
+    delay(250);
+    stopFlip();
+    drive(-18);*/
+    turn(1);
+    drive(-79);
     turn(90);
     drive(10);
-    driveHard(60);
+    driveHard(65);
 
+  }
+  else
+  {
+    flip();
+    delay(1000);
+    driveHard(6);
+    delay(250);
+    stopFlip();
   }
 }
 
 
 void autonomous() {
 
-mid();
+mid(1);
 
 }
