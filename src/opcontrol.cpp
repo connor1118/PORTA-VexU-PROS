@@ -8,6 +8,7 @@ void opcontrol() {
 			driveOP();
 			intakeOP();
 			shooterOP();
+			adjusterOP();
 
 			if(controller.get_digital(DIGITAL_LEFT) && !competition::is_connected())
 			{

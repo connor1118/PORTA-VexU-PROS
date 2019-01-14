@@ -3,6 +3,8 @@
 Motor shooter(5, MOTOR_GEARSET_18 , 1, MOTOR_ENCODER_DEGREES);
 Motor shooter1(7, MOTOR_GEARSET_18 , 0, MOTOR_ENCODER_DEGREES);
 
+Motor adjuster(8, MOTOR_GEARSET_18 , 0, MOTOR_ENCODER_DEGREES);
+
 void shooterMotors(int power)
 {
   shooter.move_voltage(power);
@@ -15,11 +17,31 @@ void shooterOP()
   {
     shooter.move_velocity(200);
     shooter1.move_velocity(200);
-  }
-  else
-  {
+    delay(550);
     shooter.move_velocity(0);
     shooter1.move_velocity(0);
+  }
+
+}
+
+bool adjPos;
+void adjusterOP()
+{
+  if(controller.get_digital(DIGITAL_UP))
+  {
+    if(adjPos)
+    {
+      adjuster.move_velocity(200);
+      delay(300);
+      adjuster.move_velocity(0);
+    }
+    else
+    {
+      adjuster.move_velocity(-200);
+      delay(300);
+      adjuster.move_velocity(0);
+    }
+    adjPos = !adjPos;
   }
 }
 
@@ -29,4 +51,20 @@ void shoot()
   shooter1.move_voltage(10000);
   delay(600);
   shooter.move_voltage(0);
+}
+
+void adjust(bool up)
+{
+  if(up)
+  {
+    adjuster.move_velocity(-200);
+    delay(300);
+    adjuster.move_velocity(0);
+  }
+  else
+  {
+    adjuster.move_velocity(-200);
+    delay(300);
+    adjuster.move_velocity(0);
+  }
 }

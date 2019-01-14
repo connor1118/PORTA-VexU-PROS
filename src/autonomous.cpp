@@ -12,10 +12,27 @@
  * from where it left off.
  */
 
-void mid(bool red)
+ADIDigitalIn A ('A');
+ADIDigitalIn B ('B');
+ADIDigitalIn C ('C');
+ADIDigitalIn D ('D');
+
+void flipDrive()
 {
-  if(red)
-  {
+  flip();
+  drive(15);
+  stopFlip();
+}
+
+void intakeDrive()
+{
+  intake();
+  drive(10);
+  stopIntake();
+}
+
+void skills()
+{
     shoot();
     turn(-1);
     drive(48);
@@ -34,21 +51,62 @@ void mid(bool red)
     turn(90);
     drive(10);
     driveHard(65);
-
-  }
-  else
-  {
-    flip();
-    delay(1000);
-    driveHard(6);
-    delay(250);
-    stopFlip();
-  }
 }
 
+void red()
+{
+  drive(35);
+  intakeDrive();
+  drive(-55);
+  drive(5);
+  turn(-70);
+  drive(10);
+  shoot();
+  adjust(1);
+  intake();
+  delay(1000);
+  shoot();
+  turn(-1);
+  drive(48);
+  turn(2);
+  drive(-24);
+  turn(90);
+  drive(10);
+  flipDrive();
+
+}
+
+void blue()
+{
+  shoot();
+  turn(1);
+  drive(48);
+}
+
+void test()
+{
+  turn(90);
+}
 
 void autonomous() {
 
-mid(1);
+  if(A.get_value())
+  {
+    test();
+  }
+  if(B.get_value())
+  {
+    skills();
+  }
+  if(C.get_value())
+  {
+    red();
+  }
+  if(D.get_value())
+  {
+    blue();
+  }
+
+
 
 }

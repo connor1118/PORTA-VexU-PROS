@@ -23,15 +23,19 @@ void intakeOP()
   }
 }
 
-void intake(int time)
+void intake()
 {
-  rollerMotor(127);
-  delay(time);
+  rollers.move_velocity(200);
+}
+
+void stopIntake()
+{
+  rollers.move_velocity(0);
 }
 
 void flip()
 {
-  rollerMotor(-127);
+  rollers.move_velocity(-200);
 }
 void stopFlip()
 {

@@ -2,6 +2,8 @@
 #define _SHOOTER_H_
 
 void shooterOP();
+void adjusterOP();
 void shoot();
+void adjust(bool up);
 
 #endif

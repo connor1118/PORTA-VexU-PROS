@@ -49,7 +49,7 @@ void drive(int inches)
   resetDrive();
     int distance = inches*(360/14.125);
 
-    int prevError = 0;
+  /*  int prevError = 0;
 
     int sp = distance;
 
@@ -76,13 +76,13 @@ void drive(int inches)
     }
 
     left(speed);
-    right(speed);
+    right(speed);*/
 
     /*leftDrive.move_relative(distance, medBaseVelocity);
     leftDrive1.move_relative(distance, medBaseVelocity);
     rightDrive.move_relative(distance, medBaseVelocity);
     rightDrive1.move_relative(distance, medBaseVelocity);*/
-  /*  if(distance > 0)
+   if(distance > 0)
     {
       leftDrive.move_velocity(highBaseVelocity);
       leftDrive1.move_velocity(highBaseVelocity);
@@ -150,7 +150,7 @@ void drive(int inches)
       leftDrive1.move_velocity(0);
       rightDrive.move_velocity(0);
       rightDrive1.move_velocity(0);
-    }*/
+    }
 }
 
 void driveHard(int inches)
@@ -210,9 +210,9 @@ void driveHard(int inches)
 void turn(int degrees)
 {
   resetDrive();
-  int target = degrees*2.4;
+  int target = degrees*2.35;
 
-  
+
 
   /*  leftDrive.move_relative(target, slowBaseVelocity);
     leftDrive1.move_relative(target, slowBaseVelocity);
