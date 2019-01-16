@@ -5,5 +5,6 @@ void shooterOP();
 void adjusterOP();
 void shoot();
 void adjust(bool up);
+void shooterNoHold();
 
 #endif

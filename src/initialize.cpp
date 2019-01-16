@@ -22,6 +22,7 @@ void initialize() {
 
 	pros::lcd::register_btn1_cb(on_center_button);
 
+	shooterNoHold();
 
 }
 

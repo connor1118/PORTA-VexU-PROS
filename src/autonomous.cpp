@@ -20,7 +20,7 @@ ADIDigitalIn D ('D');
 void flipDrive()
 {
   flip();
-  drive(15);
+  drive(20);
   stopFlip();
 }
 
@@ -60,19 +60,28 @@ void red()
   drive(-55);
   drive(5);
   turn(-70);
-  drive(10);
+  drive(8);
   shoot();
-  adjust(1);
+  delay(500);
+  adjust(0);
   intake();
-  delay(1000);
+  delay(2000);
+  stopIntake();
   shoot();
   turn(-1);
-  drive(48);
+  intake();
+  drive(50);
   turn(2);
-  drive(-24);
-  turn(90);
+  drive(-30);
+  stopIntake();
+  turn(45);
+  shoot();
+  turn(22);
   drive(10);
   flipDrive();
+  turn(73);
+  drive(32);
+  driveHard(22);
 
 }
 
@@ -85,10 +94,12 @@ void blue()
 
 void test()
 {
-  turn(90);
+  adjust(0);
 }
 
 void autonomous() {
+
+  shooterNoHold();
 
   if(A.get_value())
   {

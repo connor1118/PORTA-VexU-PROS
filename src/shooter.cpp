@@ -5,6 +5,7 @@ Motor shooter1(7, MOTOR_GEARSET_18 , 0, MOTOR_ENCODER_DEGREES);
 
 Motor adjuster(8, MOTOR_GEARSET_18 , 0, MOTOR_ENCODER_DEGREES);
 
+
 void shooterMotors(int power)
 {
   shooter.move_voltage(power);
@@ -45,12 +46,23 @@ void adjusterOP()
   }
 }
 
+void shooterNoHold()
+{
+  shooter.set_brake_mode(MOTOR_BRAKE_COAST);
+  shooter1.set_brake_mode(MOTOR_BRAKE_COAST);
+}
+
 void shoot()
 {
-  shooter.move_voltage(10000);
-  shooter1.move_voltage(10000);
-  delay(600);
+
+  shooter.move_velocity(200);
+  shooter1.move_velocity(200);
+  delay(550);
   shooter.move_voltage(0);
+
+  shooter.set_brake_mode(MOTOR_BRAKE_COAST);
+  shooter1.set_brake_mode(MOTOR_BRAKE_COAST);
+
 }
 
 void adjust(bool up)
@@ -63,7 +75,7 @@ void adjust(bool up)
   }
   else
   {
-    adjuster.move_velocity(-200);
+    adjuster.move_velocity(200);
     delay(300);
     adjuster.move_velocity(0);
   }
