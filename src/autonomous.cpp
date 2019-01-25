@@ -87,9 +87,36 @@ void red()
 
 void blue()
 {
+  drive(35);
+  intakeDrive();
+  drive(-55);
+  drive(5);
+  turn(70);
+  drive(8);
+  intake();
+  delay(250);
+  stopIntake();
+  shoot();
+  delay(500);
+  adjust(0);
+  intake();
+  delay(2000);
+  stopIntake();
   shoot();
   turn(1);
-  drive(48);
+  intake();
+  drive(50);
+  turn(-2);
+  drive(-30);
+  stopIntake();
+  turn(-45);
+  shoot();
+  turn(-22);
+  drive(10);
+  flipDrive();
+  turn(-73);
+  drive(32);
+  driveHard(22);
 }
 
 void test()
