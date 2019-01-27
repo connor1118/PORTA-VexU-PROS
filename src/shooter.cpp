@@ -58,10 +58,8 @@ void shoot()
   shooter.move_velocity(200);
   shooter1.move_velocity(200);
   delay(550);
-  shooter.move_voltage(0);
-
-  shooter.set_brake_mode(MOTOR_BRAKE_COAST);
-  shooter1.set_brake_mode(MOTOR_BRAKE_COAST);
+  shooter.move_velocity(0);
+  shooter1.move_velocity(0);
 
 }
 
