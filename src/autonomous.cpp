@@ -24,6 +24,13 @@ void flipDrive()
   stopFlip();
 }
 
+void shortFlipDrive()
+{
+  flip();
+  drive(10);
+  stopFlip();
+}
+
 void intakeDrive()
 {
   intake();
@@ -33,24 +40,41 @@ void intakeDrive()
 
 void skills()
 {
-    shoot();
-    turn(-1);
-    drive(48);
-    //intake(2000);
-  /*  drive(-28);
-    turn(90);
-    drive(12);
-    flip();
-    delay(1000);
-    driveHard(6);
-    delay(250);
-    stopFlip();
-    drive(-18);*/
-    turn(1);
-    drive(-79);
-    turn(90);
-    drive(10);
-    driveHard(65);
+  shoot();
+  drive(-1);
+  turn(70);
+  drive(35);
+  intakeDrive();
+  intake();
+  delay(1000);
+  stopIntake();
+  shortFlipDrive();
+  drive(-65);
+  drive(5);
+  turn(-70);
+  drive(8);
+
+  adjust(0);
+  intake();
+  delay(500);
+  stopIntake();
+  shoot();
+  turn(-1);
+  intake();
+  drive(50);
+  turn(2);
+  drive(-30);
+  stopIntake();
+  turn(45);
+  shoot();
+  turn(25);
+  drive(12);
+  flipDrive();
+  turn(80);
+  drive(32);
+  driveHard(22);
+  turn(-60);
+  driveHard(35);
 }
 
 void red()
