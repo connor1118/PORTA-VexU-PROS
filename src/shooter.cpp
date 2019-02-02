@@ -28,7 +28,7 @@ void shooterOP()
 bool adjPos;
 void adjusterOP()
 {
-  if(controller.get_digital(DIGITAL_UP))
+  if(controller.get_digital(DIGITAL_L2))
   {
     if(adjPos)
     {
