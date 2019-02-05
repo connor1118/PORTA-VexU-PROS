@@ -45,18 +45,32 @@ void right(int speed)
 
 void leftSlew(int slewSpeed)
 {
-  int speed = 0;
-  int steppingSpeed;
-  int step = 5;
+  int step;
+  static int speed = 0;
+  if(abs(speed) < abs(slewSpeed))
+  {
+    step = 5;
+  }
+  else
+  {
+    step = 256; // no slew
+  }
 
-  if(speed < slewSpeed)
+
+  if(speed < slewSpeed - step)
   {
     speed += step;
   }
-  else if(speed > slewSpeed)
+  else if(speed > slewSpeed + step)
   {
-    left(slewSpeed);
+    speed -= step;
   }
+  else
+  {
+    speed = slewSpeed;
+  }
+
+   left(speed);
 }
 
 //drive
