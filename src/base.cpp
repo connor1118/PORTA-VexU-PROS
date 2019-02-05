@@ -43,45 +43,28 @@ void right(int speed)
   rightDrive1.move_velocity(speed);
 }
 
+void leftSlew(int slewSpeed)
+{
+  int speed = 0;
+  int steppingSpeed;
+  int step = 5;
+
+  if(speed < slewSpeed)
+  {
+    speed += step;
+  }
+  else if(speed > slewSpeed)
+  {
+    left(slewSpeed);
+  }
+}
+
 //drive
 void drive(int inches)
 {
   resetDrive();
-    int distance = inches*(360/14.125);
+  int distance = inches*(360/14.125);
 
-  /*  int prevError = 0;
-
-    int sp = distance;
-
-    double kp = .3;
-    double kd = .5;
-
-    int ls = leftDrive.get_position();
-    int rs = rightDrive.get_position();
-    int sv = ls;
-
-    //speed
-    int error = sp-sv;
-    int derivative = error - prevError;
-    prevError = error;
-    int speed = error*kp + derivative*kd;
-
-    if(speed > highBaseVelocity)
-    {
-      speed = highBaseVelocity;
-    }
-    if(speed < -highBaseVelocity)
-    {
-      speed = -highBaseVelocity;
-    }
-
-    left(speed);
-    right(speed);*/
-
-    /*leftDrive.move_relative(distance, medBaseVelocity);
-    leftDrive1.move_relative(distance, medBaseVelocity);
-    rightDrive.move_relative(distance, medBaseVelocity);
-    rightDrive1.move_relative(distance, medBaseVelocity);*/
    if(distance > 0)
     {
       leftDrive.move_velocity(highBaseVelocity);
@@ -150,6 +133,44 @@ void drive(int inches)
       leftDrive1.move_velocity(0);
       rightDrive.move_velocity(0);
       rightDrive1.move_velocity(0);
+    }
+}
+
+void drivePID(int inches)
+{
+  resetDrive();
+    int distance = inches*(360/14.125);
+    int prevError = 0;
+    int sp = distance;
+
+    double kp = .3;
+    double kd = .5;
+
+    while(leftDrive.get_position() < distance - 5 || leftDrive.get_position() > distance + 5)
+    {
+      int ls = leftDrive.get_position();
+      int rs = rightDrive.get_position();
+      int sv = ls;
+
+      //speed
+      int error = sp-sv;
+      int derivative = error - prevError;
+      prevError = error;
+      int speed = error*kp + derivative*kd;
+
+      if(speed > highBaseVelocity)
+      {
+        speed = highBaseVelocity;
+      }
+      if(speed < -highBaseVelocity)
+      {
+        speed = -highBaseVelocity;
+      }
+
+      left(speed);
+      right(speed);
+
+      delay(20);
     }
 }
 
