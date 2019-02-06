@@ -6,6 +6,8 @@ static int medBaseVelocity = 100;
 static int slowBaseVelocity = 50;
 static int brakeBaseVelocity = -20;
 
+static int distance = 0;
+
 //DEFINING MOTORS
 Motor leftDrive(1, MOTOR_GEARSET_18, 0,  MOTOR_ENCODER_DEGREES);
 Motor leftDrive1(2, MOTOR_GEARSET_18, 0, MOTOR_ENCODER_DEGREES);
@@ -33,17 +35,48 @@ void resetDrive()
 
 void left(int speed)
 {
-  leftDrive.move_velocity(speed);
-  leftDrive1.move_velocity(speed);
+  leftDrive.move(speed);
+  leftDrive1.move(speed);
 }
 
 void right(int speed)
 {
-  rightDrive.move_velocity(speed);
-  rightDrive1.move_velocity(speed);
+  rightDrive.move(speed);
+  rightDrive1.move(speed);
 }
 
-void leftSlew(int slewSpeed)
+bool isDriving()
+{
+  static int count = 0;
+  static int last = 0;
+  static int lastTarget = 0;
+
+  int leftPos = leftDrive.get_position();
+  int rightPos = rightDrive.get_position();
+
+  int curr = (abs(leftPos) + abs(rightPos))/2;
+  int thresh = 3;
+  int target = distance;
+
+  if(abs(last-curr) < thresh)
+    count++;
+  else
+    count = 0;
+
+  if(target != lastTarget)
+    count = 0;
+
+  lastTarget = target;
+  last = curr;
+
+  //not driving if we haven't moved
+  if(count > 4)
+    return false;
+  else
+    return true;
+}
+
+void leftSlew(int slewSpeed, bool decel)
 {
   int step;
   static int speed = 0;
@@ -53,10 +86,15 @@ void leftSlew(int slewSpeed)
   }
   else
   {
+    if(decel)
+    {
+    step = 10;
+    }
+    else
+    {
     step = 256; // no slew
+    }
   }
-
-
   if(speed < slewSpeed - step)
   {
     speed += step;
@@ -73,11 +111,48 @@ void leftSlew(int slewSpeed)
    left(speed);
 }
 
+void rightSlew(int slewSpeed, bool decel)
+{
+  int step;
+  static int speed = 0;
+  if(abs(speed) < abs(slewSpeed))
+  {
+    step = 5;
+  }
+  else
+  {
+    if(decel)
+    {
+    step = 10;
+    }
+    else
+    {
+    step = 256; // no slew
+    }
+  }
+
+
+  if(speed < slewSpeed - step)
+  {
+    speed += step;
+  }
+  else if(speed > slewSpeed + step)
+  {
+    speed -= step;
+  }
+  else
+  {
+    speed = slewSpeed;
+  }
+
+   right(speed);
+}
+
 //drive
 void drive(int inches)
 {
   resetDrive();
-  int distance = inches*(360/14.125);
+  distance = inches*(360/14.125);
 
    if(distance > 0)
     {
@@ -153,14 +228,14 @@ void drive(int inches)
 void drivePID(int inches)
 {
   resetDrive();
-    int distance = inches*(360/14.125);
+    distance = inches*(360/14.125);
     int prevError = 0;
     int sp = distance;
 
     double kp = .3;
     double kd = .5;
 
-    while(leftDrive.get_position() < distance - 5 || leftDrive.get_position() > distance + 5)
+    do
     {
       int ls = leftDrive.get_position();
       int rs = rightDrive.get_position();
@@ -181,11 +256,12 @@ void drivePID(int inches)
         speed = -highBaseVelocity;
       }
 
-      left(speed);
-      right(speed);
+      leftSlew(speed, 0);
+      rightSlew(speed, 0);
 
       delay(20);
     }
+    while(isDriving());
 }
 
 void driveHard(int inches)
