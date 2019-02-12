@@ -55,7 +55,7 @@ bool isDriving()
   int rightPos = rightDrive.get_position();
 
   int curr = (abs(leftPos) + abs(rightPos))/2;
-  int thresh = 3;
+  int thresh = 2;
   int target = distance;
 
   if(abs(last-curr) < thresh)
@@ -70,7 +70,7 @@ bool isDriving()
   last = curr;
 
   //not driving if we haven't moved
-  if(count > 4)
+  if(count > 6)
     return false;
   else
     return true;
@@ -232,8 +232,8 @@ void drivePID(int inches)
     int prevError = 0;
     int sp = distance;
 
-    double kp = .3;
-    double kd = .5;
+    double kp = .35;
+    double kd = 0.5;
 
     do
     {
@@ -258,7 +258,7 @@ void drivePID(int inches)
 
       leftSlew(speed, 0);
       rightSlew(speed, 0);
-
+      printf("%d\n", error);
       delay(20);
     }
     while(isDriving());
@@ -316,6 +316,50 @@ void driveHard(int inches)
     rightDrive.move_velocity(0);
     rightDrive1.move_velocity(0);
   }
+}
+
+void turnPID(int degrees)
+{
+  resetDrive();
+    distance = degrees*3.4;
+    int prevError = 0;
+    int sp = distance;
+
+    int kboost;
+    double kp = 1;
+    double kd = 2.5;
+
+    if(distance>0)
+      kboost = 10;
+    else
+      kboost = -10;
+
+    do
+    {
+      int ls = leftDrive.get_position();
+      int rs = rightDrive.get_position();
+      int sv = (rs-ls)/2;
+
+      //speed
+      int error = sp-sv;
+      int derivative = error - prevError;
+      prevError = error;
+      int speed = error*kp + derivative*kd;
+
+      if(speed > medBaseVelocity)
+        speed = medBaseVelocity;
+
+      if(speed < -medBaseVelocity)
+        speed = -medBaseVelocity;
+
+
+      leftSlew(-speed, 0);
+      rightSlew(speed, 0);
+      printf("%d\n", error);
+      delay(20);
+    }
+    while(isDriving());
+  resetDrive();
 }
 
 void turn(int degrees)

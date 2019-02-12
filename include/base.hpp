@@ -12,6 +12,7 @@ void drive(int inches);
 void drivePID(int inches);
 void driveHard(int inches);
 void turn(int degrees);
+void turnPID(int degrees);
 
 
 
