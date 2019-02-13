@@ -28,6 +28,7 @@ void shooterOP()
 bool adjPos;
 void adjusterOP()
 {
+  adjuster.set_brake_mode(MOTOR_BRAKE_HOLD);
   if(controller.get_digital(DIGITAL_L2))
   {
     if(adjPos)
@@ -63,16 +64,21 @@ void shoot()
 
 }
 
+
+
 void adjust(bool up)
 {
+
   if(up)
   {
+    adjuster.set_brake_mode(MOTOR_BRAKE_HOLD);
     adjuster.move_velocity(-200);
     delay(300);
     adjuster.move_velocity(0);
   }
   else
   {
+    adjuster.set_brake_mode(MOTOR_BRAKE_HOLD);
     adjuster.move_velocity(200);
     delay(300);
     adjuster.move_velocity(0);
