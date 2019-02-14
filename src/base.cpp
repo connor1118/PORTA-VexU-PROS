@@ -149,7 +149,7 @@ void rightSlew(int slewSpeed, bool decel)
 }
 
 //drive
-void drive(int inches)
+void driveNoPID(int inches)
 {
   resetDrive();
   distance = inches*(360/14.125);
@@ -225,14 +225,14 @@ void drive(int inches)
     }
 }
 
-void drivePID(int inches)
+void drive(int inches)
 {
   resetDrive();
     distance = inches*(360/14.125);
     int prevError = 0;
     int sp = distance;
 
-    double kp = .35;
+    double kp = .31;
     double kd = 0.5;
 
     do
@@ -318,10 +318,10 @@ void driveHard(int inches)
   }
 }
 
-void turnPID(int degrees)
+void turn(int degrees)
 {
   resetDrive();
-    distance = degrees*3.4;
+    distance = degrees*2.59;
     int prevError = 0;
     int sp = distance;
 
@@ -362,7 +362,7 @@ void turnPID(int degrees)
   resetDrive();
 }
 
-void turn(int degrees)
+void turnNoPID(int degrees)
 {
   resetDrive();
   int target = degrees*2.35;

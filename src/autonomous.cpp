@@ -145,7 +145,8 @@ void blue()
 
 void test()
 {
-  adjust(0);
+  //drive(30);
+  turn(90);
 }
 
 void autonomous() {
