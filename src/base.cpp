@@ -19,10 +19,29 @@ Motor rightDrive1(4, MOTOR_GEARSET_18, 1, MOTOR_ENCODER_DEGREES);
 
 void driveOP()
 {
-  leftDrive.move(controller.get_analog(ANALOG_LEFT_Y));
+  int L = controller.get_analog(ANALOG_LEFT_Y);
+  int R = controller.get_analog(ANALOG_RIGHT_Y);
+
+  if(L > 0 && R > 0)
+  {
+    leftDrive.move(L);
+    leftDrive1.move(L);
+    rightDrive.move(R);
+    rightDrive1.move(R);
+  }
+  else if((L > 0 && R < 0) || (L < 0 && R > 0))
+  {
+    leftDrive.move(L*.7);
+    leftDrive1.move(L*.7);
+    rightDrive.move(R*.7);
+    rightDrive1.move(R*.7);
+  }
+
+
+  /*leftDrive.move(controller.get_analog(ANALOG_LEFT_Y));
   leftDrive1.move(controller.get_analog(ANALOG_LEFT_Y));
   rightDrive.move(controller.get_analog(ANALOG_RIGHT_Y));
-  rightDrive1.move(controller.get_analog(ANALOG_RIGHT_Y));
+  rightDrive1.move(controller.get_analog(ANALOG_RIGHT_Y));*/
 }
 
 void resetDrive()
@@ -241,7 +260,6 @@ void drive(int inches)
       int rs = rightDrive.get_position();
       int sv = ls;
 
-      //speed
       int error = sp-sv;
       int derivative = error - prevError;
       prevError = error;
