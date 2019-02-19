@@ -82,9 +82,9 @@ void red()
   drive(35);
   intakeDrive();
   drive(-55);
-  drive(5);
-  turn(-70);
-  drive(8);
+  drive(7);
+  turn(90);
+  drive(7);
   shoot();
   delay(500);
   adjust(0);
@@ -92,21 +92,21 @@ void red()
   delay(2000);
   stopIntake();
   shoot();
-  turn(-1);
+  turn(3);
   intake();
-  drive(50);
-  turn(2);
+  drive(46);
+  turn(-1);
   drive(-30);
   stopIntake();
-  turn(45);
+  turn(-60);
   shoot();
-  turn(22);
-  drive(10);
+  turn(-35);
+  drive(-5);
+  drive(20);
   flipDrive();
-  turn(73);
+  turn(-85);
   drive(32);
-  driveHard(22);
-
+  driveHard(24);
 }
 
 void blue()
@@ -114,12 +114,9 @@ void blue()
   drive(35);
   intakeDrive();
   drive(-55);
-  drive(5);
-  turn(70);
-  drive(8);
-  intake();
-  delay(250);
-  stopIntake();
+  drive(7);
+  turn(-90);
+  drive(7);
   shoot();
   delay(500);
   adjust(0);
@@ -127,20 +124,21 @@ void blue()
   delay(2000);
   stopIntake();
   shoot();
-  turn(1);
+  turn(-3);
   intake();
-  drive(50);
-  turn(-2);
+  drive(46);
+  turn(1);
   drive(-30);
   stopIntake();
-  turn(-45);
+  turn(60);
   shoot();
-  turn(-22);
-  drive(10);
+  turn(35);
+  drive(-5);
+  drive(20);
   flipDrive();
-  turn(-73);
+  turn(85);
   drive(32);
-  driveHard(22);
+  driveHard(24);
 }
 
 void test()

@@ -22,14 +22,14 @@ void driveOP()
   int L = controller.get_analog(ANALOG_LEFT_Y);
   int R = controller.get_analog(ANALOG_RIGHT_Y);
 
-  if(L > 0 && R > 0)
+/*  if((L > 10 && R > 10) || (L < -10 && R < -10))
   {
     leftDrive.move(L);
     leftDrive1.move(L);
     rightDrive.move(R);
     rightDrive1.move(R);
-  }
-  else if((L > 0 && R < 0) || (L < 0 && R > 0))
+  }*/
+  /*else*/ if((L > 10 && R < -10) || (L < -10 && R > 10))
   {
     leftDrive.move(L*.7);
     leftDrive1.move(L*.7);
@@ -37,6 +37,13 @@ void driveOP()
     rightDrive1.move(R*.7);
   }
 
+  else
+  {
+      leftDrive.move(L);
+      leftDrive1.move(L);
+      rightDrive.move(R);
+      rightDrive1.move(R);
+  }
 
   /*leftDrive.move(controller.get_analog(ANALOG_LEFT_Y));
   leftDrive1.move(controller.get_analog(ANALOG_LEFT_Y));
@@ -107,7 +114,7 @@ void leftSlew(int slewSpeed, bool decel)
   {
     if(decel)
     {
-    step = 10;
+    step = 5;
     }
     else
     {
@@ -142,7 +149,7 @@ void rightSlew(int slewSpeed, bool decel)
   {
     if(decel)
     {
-    step = 10;
+    step = 5;
     }
     else
     {
@@ -274,8 +281,8 @@ void drive(int inches)
         speed = -highBaseVelocity;
       }
 
-      leftSlew(speed, 0);
-      rightSlew(speed, 0);
+      leftSlew(speed, 1);
+      rightSlew(speed, 1);
       printf("%d\n", error);
       delay(20);
     }
@@ -339,7 +346,7 @@ void driveHard(int inches)
 void turn(int degrees)
 {
   resetDrive();
-    distance = degrees*2.59;
+    distance = degrees*2.475;
     int prevError = 0;
     int sp = distance;
 
