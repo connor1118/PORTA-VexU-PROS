@@ -42,7 +42,7 @@ void skills()
 {
   shoot();
   drive(-1);
-  turn(70);
+  turn(90);
   drive(35);
   intakeDrive();
   intake();
@@ -51,7 +51,7 @@ void skills()
   shortFlipDrive();
   drive(-65);
   drive(5);
-  turn(-70);
+  turn(-90);
   drive(8);
 
   adjust(0);
@@ -59,13 +59,14 @@ void skills()
   delay(500);
   stopIntake();
   shoot();
-  turn(-1);
+  turn(-3);
   intake();
-  drive(50);
+  drive(45);
+  drive(3);
   turn(2);
   drive(-30);
   stopIntake();
-  turn(45);
+  turn(35);
   shoot();
   turn(25);
   drive(12);
