@@ -174,6 +174,49 @@ void rightSlew(int slewSpeed, bool decel)
    right(speed);
 }
 
+void straight(int speed)
+{
+  int ls = leftDrive1.get_position();
+  int rs = rightDrive1.get_position();
+  if(speed > 0)
+  {
+    if(ls == rs)
+    {
+      leftSlew(speed, 1);
+      rightSlew(speed, 1);
+    }
+    if(ls > rs)
+    {
+      leftSlew(speed-10, 1);
+      rightSlew(speed, 1);
+    }
+    if(ls < rs)
+    {
+      leftSlew(speed, 1);
+      rightSlew(speed-10, 1);
+    }
+  }
+
+  else
+  {
+    if(ls == rs)
+    {
+      leftSlew(speed, 1);
+      rightSlew(speed, 1);
+    }
+    if(ls > rs)
+    {
+      leftSlew(speed+10, 1);
+      rightSlew(speed, 1);
+    }
+    if(ls < rs)
+    {
+      leftSlew(speed, 1);
+      rightSlew(speed+10, 1);
+    }
+  }
+}
+
 //drive
 void driveNoPID(int inches)
 {
@@ -263,8 +306,8 @@ void drive(int inches)
 
     do
     {
-      int ls = leftDrive.get_position();
-      int rs = rightDrive.get_position();
+      int ls = leftDrive1.get_position();
+      int rs = rightDrive1.get_position();
       int sv = ls;
 
       int error = sp-sv;
@@ -281,8 +324,9 @@ void drive(int inches)
         speed = -highBaseVelocity;
       }
 
-      leftSlew(speed, 1);
       rightSlew(speed, 1);
+      leftSlew(speed, 1);
+    //___int64_t_defined  straight(speed);
       printf("%d\n", error);
       delay(20);
     }
@@ -346,7 +390,7 @@ void driveHard(int inches)
 void turn(int degrees)
 {
   resetDrive();
-    distance = degrees*2.475;
+    distance = degrees*2.5;
     int prevError = 0;
     int sp = distance;
 
@@ -361,8 +405,8 @@ void turn(int degrees)
 
     do
     {
-      int ls = leftDrive.get_position();
-      int rs = rightDrive.get_position();
+      int ls = leftDrive1.get_position();
+      int rs = rightDrive1.get_position();
       int sv = (rs-ls)/2;
 
       //speed
