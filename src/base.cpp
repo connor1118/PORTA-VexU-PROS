@@ -9,7 +9,7 @@ static int brakeBaseVelocity = -20;
 static int distance = 0;
 
 //DEFINING MOTORS
-Motor leftDrive(1, MOTOR_GEARSET_18, 0,  MOTOR_ENCODER_DEGREES);
+Motor leftDrive(12, MOTOR_GEARSET_18, 0,  MOTOR_ENCODER_DEGREES);
 Motor leftDrive1(2, MOTOR_GEARSET_18, 0, MOTOR_ENCODER_DEGREES);
 
 Motor rightDrive(3, MOTOR_GEARSET_18, 1, MOTOR_ENCODER_DEGREES);
@@ -390,7 +390,7 @@ void driveHard(int inches)
 void turn(int degrees)
 {
   resetDrive();
-    distance = degrees*2.5;
+    distance = degrees*2.55;
     int prevError = 0;
     int sp = distance;
 

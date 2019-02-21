@@ -41,7 +41,6 @@ void intakeDrive()
 void skills()
 {
 /*  shoot();
-  drive(-1);
   turn(-90);
   drive(35);
   intakeDrive();
@@ -51,8 +50,10 @@ void skills()
   stopIntake();
   drive(5);
   flipDrive();
+
+  turn(-1);
   drive(-75);
-  drive(7);
+  drive(9);
   turn(90);
   drive(8);
 
@@ -67,23 +68,52 @@ void skills()
   drive(45);
   drive(7);
   turn(-1);
-  drive(-8);
+  drive(-9);
   stopIntake();
   turn(-130);
+  intake();
   drive(22);
+  stopIntake();
   flipDrive();
   drive(-16);
-  turn(47);*/
+  turn(47);//*/
 
   drive(34);
   turn(90);
   drive(24);
-  drive(-42);
+  drive(10);// wall align on middle flags
+  drive(-32);
+  flip();
+  delay(200);
+  stopFlip();
+  turn(-90);
+  drive(34);
   intake();
   delay(500);
   stopIntake();
+  flipDrive();
+  drive(-2);
+  turn(90);
+
+  drive(32);
+  drive(10); //wall align 3rd flags
+  drive(-8);
+  turn(10);
+  drive(-46);
+  delay(500);
+  turn(-15);
   shoot();
-  drive(20);
+  drive(-4);
+  turn(-90);
+  drive(26);
+  drive(8); //wall align on blue wall
+  drive(-20);
+  turn(-90);
+  drive(31);
+  turn(-90);
+  drive(6);
+  driveHard(60);
+
   /*
   turn(-90);
   drive(12);
@@ -161,8 +191,8 @@ void blue()
 
 void test()
 {
-  drive(60);
-  //turn(90);
+  //drive(60);
+  turn(90);
 }
 
 void autonomous() {
