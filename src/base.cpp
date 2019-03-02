@@ -108,7 +108,7 @@ void leftSlew(int slewSpeed, bool decel)
   static int speed = 0;
   if(abs(speed) < abs(slewSpeed))
   {
-    step = 5;
+    step = 10;
   }
   else
   {
@@ -143,7 +143,7 @@ void rightSlew(int slewSpeed, bool decel)
   static int speed = 0;
   if(abs(speed) < abs(slewSpeed))
   {
-    step = 5;
+    step = 10;
   }
   else
   {

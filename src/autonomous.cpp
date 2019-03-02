@@ -42,6 +42,7 @@ void skills()
 {
   // shoot top flag, grab ball, flip cap
   shoot();
+  drive(-4);
   turn(-90);
   drive(35);
   intakeDrive();
@@ -52,9 +53,9 @@ void skills()
   drive(5);
   flipDrive();
   //wall align, shoot middle flag
-  turn(-1);
+  turn(-10);
   drive(-75);
-  drive(9);
+  drive(10);
   turn(90);
   drive(8);
   adjust(0);
@@ -63,60 +64,73 @@ void skills()
   stopIntake();
   shoot();
   //hit bottom flag, flip second cap
-  turn(3);
+  turn(10);
   intake();
-  drive(45);
+  drive(48);
   drive(7);
   turn(-1);
   drive(-9);
   stopIntake();
   turn(-130);
   intake();
-  drive(22);
+  delay(500);
   stopIntake();
+  drive(22);
   flipDrive();
   //drive and hit bottom flag on middle set
   drive(-16);
   turn(47);
-  drive(34);
+  drive(36);
   turn(90);
   drive(24);
   drive(10);// wall align on middle flags
+
   //drive and flip third cap
   drive(-32);
   flip();
   delay(200);
   stopFlip();
-  turn(-90);
-  drive(34);
+  turn(-95);
+  drive(36);
   intake();
   delay(500);
   stopIntake();
   flipDrive();
   //turn and hit bottom flag on third set
-  drive(-2);
+  drive(-3);
   turn(90);
   drive(32);
   drive(10); //wall align 3rd flags
   //back up and shoot middle flag
-  drive(-8);
-  turn(10);
-  drive(-46);
+  drive(-20);
+  turn(8);
+  drive(-34);
   delay(500);
-  turn(-15);
+  turn(-16);
+  flip();
+  delay(200);
+  stopFlip();
+  intake();
+  delay(500);
+  stopIntake();
   shoot();
   //aligning for park
-  drive(-4);
-  turn(-90);
+  drive(-10);
+  turn(-85);
   drive(26);
-  drive(8); //wall align on blue wall
+  drive(10); //wall align on blue wall
   drive(-20);
   turn(-90);
-  drive(31);
+  drive(23);
   turn(-90);
   //parking
+  intake();
   drive(6);
-  driveHard(60);
+  driveHard(32);
+  drive(8);
+  driveHard(27);
+  stopIntake();
+
 
 
 }
@@ -127,8 +141,9 @@ void red()
   drive(35);
   intakeDrive();
   //back up, align, and turn towards flags
+  turn(-5);
   drive(-55);
-  drive(7);
+  drive(9);
   turn(90);
   drive(7);
   //shoot top and middle flags
@@ -140,22 +155,23 @@ void red()
   stopIntake();
   shoot();
   //hit bottom flag
-  turn(3);
+  turn(5);
   intake();
-  drive(46);
+  drive(48);
+  drive(7);
   //back up and shoot flag from middle set
   turn(-1);
   drive(-30);
   stopIntake();
-  turn(-60);
+  turn(-70);
   shoot();
   //flip second cap
-  turn(-35);
-  drive(-5);
-  drive(20);
+  turn(-25);
+  drive(-12);
+  drive(26);
   flipDrive();
   //align for park and park
-  turn(-85);
+  turn(-95);
   drive(32);
   driveHard(24);
 }
@@ -166,8 +182,9 @@ void blue()
   drive(35);
   intakeDrive();
   //back up, align, and turn towards flags
+  turn(-5);
   drive(-55);
-  drive(7);
+  drive(9);
   turn(-90);
   drive(7);
   //shoot top and middle flags
@@ -179,29 +196,30 @@ void blue()
   stopIntake();
   shoot();
   //hit bottom flag
-  turn(-3);
+  turn(-5);
   intake();
-  drive(46);
+  drive(48);
+  drive(7);
   //back up and shoot flag from middle set
   turn(1);
   drive(-30);
   stopIntake();
-  turn(60);
+  turn(70);
   shoot();
   //flip second cap
-  turn(35);
-  drive(-5);
-  drive(20);
+  turn(25);
+  drive(-12);
+  drive(26);
   flipDrive();
   //align for park and park
-  turn(85);
+  turn(90);
   drive(32);
   driveHard(24);
 }
 
 void test()
 {
-  //drive(60);
+  //drive(30);
   turn(90);
 }
 
