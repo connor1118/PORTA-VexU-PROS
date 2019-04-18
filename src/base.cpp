@@ -71,6 +71,18 @@ void right(int speed)
   rightDrive1.move(speed);
 }
 
+void brake()
+{
+  leftDrive.set_brake_mode(MOTOR_BRAKE_HOLD);
+  rightDrive.set_brake_mode(MOTOR_BRAKE_HOLD);
+}
+
+void coast()
+{
+  leftDrive.set_brake_mode(MOTOR_BRAKE_COAST);
+  rightDrive.set_brake_mode(MOTOR_BRAKE_COAST);
+}
+
 bool isDriving()
 {
   static int count = 0;

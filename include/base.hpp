@@ -14,7 +14,8 @@ void driveHard(int inches);
 void turn(int degrees);
 void turnNoPID(int degrees);
 
-
+void brake();
+void coast();
 
 void resetDrive();
 
