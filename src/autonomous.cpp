@@ -17,6 +17,8 @@ ADIDigitalIn B ('B');
 ADIDigitalIn C ('C');
 ADIDigitalIn D ('D');
 
+ADIDigitalIn Park ('H');
+
 void flipDrive()
 {
   flip();
@@ -40,7 +42,82 @@ void intakeDrive()
 
 void skills()
 {
-
+  //shoot middle flag then align
+  adjust(0);
+  drive(20);
+  shoot();
+  drive(-24);
+  turn(-90);
+  drive(-16);
+  //get ball and flip cap
+  drive(40);
+  intakeDrive();
+  intake();
+  drive(-5);
+  delay(1000);
+  stopIntake();
+  drive(5);
+  flipDrive();
+  //back up, align, and turn towards flags
+  turn(-3);
+  drive(-70);
+  drive(-8);
+  drive(12);
+  turn(89);
+  adjust(1);
+  drive(55);
+  //shoot next flag
+  intake();
+  delay(1500);
+  stopIntake();
+  shoot();
+  //align for next cap
+  drive(-3);
+  turn(-90);
+  drive(-16);
+  //grab next ball and flip cap
+  drive(40);
+  intakeDrive();
+  intake();
+  drive(-5);
+  delay(3000);
+  stopIntake();
+  drive(5);
+  flipDrive();
+  //turn and shoot
+  drive(-8);
+  turn(88);
+  intake();
+  drive(5);
+  shoot();
+  //hit bottom flag middle set
+  turn(8);
+  drive(48);
+  drive(12);
+  stopIntake();
+  //back up and flip cap
+  drive(-32);
+  turn(90);
+  drive(22);
+  flipDrive();
+  //turn diagonal and drive to align for park
+  drive(-12);
+  turn(45);
+  drive(24);
+  turn(45);
+  drive(34);
+  turn(90);
+  drive(-20);
+  //Park
+  drive(26);
+  intake();
+  driveHard(35);
+  drive(9);
+  driveHard(36);
+  brake();
+  stopIntake();
+  delay(500);
+  coast();
 }
 
 void red()
@@ -104,18 +181,21 @@ void red()
   stopIntake();
 
   //park
-  turn(-55);
-  drive(-40);
-  drive(-8);
-  drive(45);
-  turn(-90);
-  intake();
-  drive(31);
-  driveHard(28);
-  stopIntake();
-  brake();
-  delay(500);
-  coast();
+  if(Park.get_value())
+  {
+    turn(-55);
+    drive(-40);
+    drive(-8);
+    drive(45);
+    turn(-90);
+    intake();
+    drive(31);
+    driveHard(28);
+    stopIntake();
+    brake();
+    delay(500);
+    coast();
+  }
 }
 
 void blue()
@@ -179,18 +259,21 @@ void blue()
   stopIntake();
 
   //park
-  turn(50);
-  drive(-40);
-  drive(-8);
-  drive(45);
-  turn(90);
-  intake();
-  drive(31);
-  driveHard(28);
-  stopIntake();
-  brake();
-  delay(500);
-  coast();
+  if(Park.get_value())
+  {
+    turn(50);
+    drive(-40);
+    drive(-8);
+    drive(45);
+    turn(90);
+    intake();
+    drive(31);
+    driveHard(28);
+    stopIntake();
+    brake();
+    delay(500);
+    coast();
+  }
 }
 
 void test()

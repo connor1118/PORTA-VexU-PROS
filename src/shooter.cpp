@@ -28,10 +28,10 @@ void shooterOP()
 bool adjPos;
 void adjusterOP()
 {
-  if(competition::is_connected())
+//  if(competition::is_connected())
     adjuster.set_brake_mode(MOTOR_BRAKE_BRAKE);
-  else
-    adjuster.set_brake_mode(MOTOR_BRAKE_COAST);
+  //else
+  //  adjuster.set_brake_mode(MOTOR_BRAKE_COAST);
 
   if(controller.get_digital(DIGITAL_L2))
   {

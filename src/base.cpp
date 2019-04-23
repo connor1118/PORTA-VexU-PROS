@@ -39,10 +39,10 @@ void driveOP()
 
   else
   {
-      leftDrive.move(L);
-      leftDrive1.move(L);
-      rightDrive.move(R);
-      rightDrive1.move(R);
+      leftDrive.move(L*.8);
+      leftDrive1.move(L*.8);
+      rightDrive.move(R*.8);
+      rightDrive1.move(R*.8);
   }
 
   /*leftDrive.move(controller.get_analog(ANALOG_LEFT_Y));
