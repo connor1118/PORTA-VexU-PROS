@@ -16,10 +16,14 @@ WARNFLAGS+=
 EXTRA_CFLAGS=
 EXTRA_CXXFLAGS=
 
+# Set to 1 to enable hot/cold linking
+USE_PACKAGE=1
+
+
 # Set this to 1 to add additional rules to compile your project as a PROS library template
-IS_LIBRARY:=0
+IS_LIBRARY:=1
 # TODO: CHANGE THIS!
-LIBNAME:=libbest
+LIBNAME:=libPORTA
 VERSION:=1.0.0
 # EXCLUDE_SRC_FROM_LIB= $(SRCDIR)/unpublishedfile.c
 # this line excludes opcontrol.c and similar files

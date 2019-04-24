@@ -44,13 +44,12 @@ void skills()
 {
   //shoot middle flag then align
   adjust(0);
-  drive(20);
   shoot();
-  drive(-24);
+  drive(-5);
   turn(-90);
   drive(-16);
   //get ball and flip cap
-  drive(40);
+  drive(38);
   intakeDrive();
   intake();
   drive(-5);
@@ -62,8 +61,8 @@ void skills()
   turn(-3);
   drive(-70);
   drive(-8);
-  drive(12);
-  turn(89);
+  drive(15);
+  turn(87);
   adjust(1);
   drive(55);
   //shoot next flag
@@ -74,7 +73,8 @@ void skills()
   //align for next cap
   drive(-3);
   turn(-90);
-  drive(-16);
+  drive(-10);
+  drive(-10);
   //grab next ball and flip cap
   drive(40);
   intakeDrive();
@@ -86,13 +86,13 @@ void skills()
   flipDrive();
   //turn and shoot
   drive(-8);
-  turn(88);
+  turn(92);
   intake();
   drive(5);
   shoot();
   //hit bottom flag middle set
   turn(8);
-  drive(48);
+  drive(46);
   drive(12);
   stopIntake();
   //back up and flip cap
